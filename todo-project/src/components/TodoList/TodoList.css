@@ -1,0 +1,73 @@
+.todo-value-container {
+  margin-top: 25px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 20px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.todo-value-container:hover .todo-right-side img {
+  opacity: 1;
+  transform: translateX(0); /* move into place */
+  transition: 0.3s;
+}
+
+/* todo left side */
+
+.todo-left-side {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.radio-input {
+  margin-right: 15px;
+}
+
+.calendar-image {
+  height: 13px;
+}
+
+.todo {
+  font-size: 17px;
+}
+
+.todo-date-container {
+  margin-top: 3px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 70px;
+  color: gray;
+}
+
+/* todo right side */
+
+.todo-right-side {
+  width: 100%;
+  max-width: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-right-side img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.edit-image,
+.delete-image {
+  height: 16px;
+  cursor: pointer;
+}
+
+.todo-name-container {
+  width: 100%;
+  max-width: 200px;
+}

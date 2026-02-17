@@ -1,0 +1,7 @@
+.todo-container {
+  height: 100vh;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-top: 50px;
+  box-sizing: border-box; /* ✅ important */
+}

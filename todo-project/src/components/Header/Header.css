@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.todo-logo {
+  height: 45px;
+}
+
+.todays-task {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* soft gray shadow */
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 17px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* soft gray shadow */
+}
