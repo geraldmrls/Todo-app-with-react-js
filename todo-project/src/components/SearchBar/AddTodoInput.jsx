@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TodoList } from "../TodoList/TodoList.jsx";
 import {FilterTodo} from "../FilterTodo/FilterTodo.jsx"
 import AddImage from "../../assets/add.svg?react"
@@ -7,6 +7,9 @@ import "./AddTodoInput.css"
 
 export function TodoBody({ todo, setTodo }) {
     const [inputValue, setInputValue] = useState("");
+    useEffect(()=>{
+        localStorage.setItem("todos", JSON.stringify(todo))
+    }, [todo])
 
     function handleInput(event) {
         const todoValue = event.target.value;

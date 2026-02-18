@@ -6,7 +6,10 @@ import './App.css'
 
 function App() {
 
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState(()=>{
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
 
   return (
     <div className='todo-container'>
