@@ -1,9 +1,11 @@
 
 import { useState } from "react";
-import addImage from "../../assets/add.svg"
+import { TodoList } from "../TodoList/TodoList.jsx";
+import {FilterTodo} from "../FilterTodo/FilterTodo.jsx"
+import AddImage from "../../assets/add.svg?react"
 import "./AddTodoInput.css"
 
-export function AddTodoInput({ todo, setTodo }) {
+export function TodoBody({ todo, setTodo }) {
     const [inputValue, setInputValue] = useState("");
 
     function handleInput(event) {
@@ -31,13 +33,16 @@ export function AddTodoInput({ todo, setTodo }) {
             handleAddButton();
         }
     }
-
+ 
     return (
         <>
             <div className="add-task-container">
                 <input value={inputValue} className="input-todo" type="text" placeholder="Add a new task..." onChange={handleInput} onKeyDown={pressEnterKey} />
-                <img src={addImage} alt="add-image" className="add-image" onClick={handleAddButton} />
+                <AddImage alt="add-image" className="add-image" onClick={handleAddButton} />
             </div>
+            <FilterTodo />
+            <TodoList todo={todo} setTodo={setTodo} />
+
         </>
     )
 }

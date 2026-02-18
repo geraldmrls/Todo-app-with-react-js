@@ -1,20 +1,29 @@
+/* =========================
+   TODO CONTAINER
+========================= */
+
 .todo-value-container {
   margin-top: 25px;
-  border-radius: 10px;
+  padding: 6px 20px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 20px;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
+
+  border-radius: 10px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.3);
+
+  transition: border-color 0.3s ease;
 }
 
-.todo-value-container:hover .todo-right-side img {
-  opacity: 1;
-  transform: translateX(0); /* move into place */
-  transition: 0.3s;
+.todo-value-container:hover {
+  border: 1px solid #503cf7;
 }
 
-/* todo left side */
+/* =========================
+   LEFT SIDE
+========================= */
 
 .todo-left-side {
   display: flex;
@@ -24,7 +33,7 @@
 }
 
 .radio-input {
-  margin-right: 15px;
+  margin-right: 17px;
 }
 
 .calendar-image {
@@ -38,36 +47,141 @@
 .todo-date-container {
   margin-top: 3px;
   font-size: 11px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   width: 100%;
   max-width: 70px;
+
   color: gray;
-}
-
-/* todo right side */
-
-.todo-right-side {
-  width: 100%;
-  max-width: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.todo-right-side img {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.edit-image,
-.delete-image {
-  height: 16px;
-  cursor: pointer;
 }
 
 .todo-name-container {
   width: 100%;
-  max-width: 200px;
+}
+
+.todo-added-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.todo-right-side {
+  position: relative;
+  width: 100%;
+  max-width: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* =========================
+   ICONS (EDIT / DELETE)
+========================= */
+
+.edit-image,
+.delete-image {
+  height: 19px;
+  width: 19px;
+  cursor: pointer;
+  stroke: black;
+}
+
+.edit-image {
+  margin-right: 15px;
+}
+
+/* hover visibility when container is hovered */
+
+.todo-value-container:hover .todo-right-side .edit-image,
+.todo-value-container:hover .todo-right-side .delete-image {
+  opacity: 1;
+  transform: translateX(0);
+  transition: 0.3s;
+}
+
+.todo-right-side .edit-image,
+.todo-right-side .delete-image {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* icon hover colors */
+
+.edit-image:hover {
+  color: #503cf7;
+}
+
+.edit-image:hover {
+  stroke: green;
+}
+
+.delete-image:hover {
+  stroke: red;
+}
+
+/* =========================
+   ICON BACKGROUND CIRCLES
+========================= */
+
+.delete-image-circle,
+.edit-image-cirlce {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(17, 17, 17, 0.1);
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+
+.edit-image:hover + .edit-image-cirlce {
+  opacity: 1;
+}
+
+.delete-image:hover + .delete-image-circle {
+  opacity: 1;
+}
+
+
+
+
+.delete-image-circle {
+  right: -5px;
+}
+
+.edit-image-cirlce {
+  right: 35px;
+}
+
+/* =========================
+   EDIT STATE (HIDDEN / SHOWN)
+========================= */
+
+.remove-todo-name-container,
+.remove-todo-added-container,
+.remove-edit-input {
+  display: none;
+}
+
+.show-edit-input {
+  width: 100%;
+  margin-right: 15px;
+  padding: 10px 3px 10px 0px;
+  border: none;
+  font-size: 17px;
+}
+
+.show-edit-input:focus {
+  outline: none;
+  border: none;
 }
