@@ -22,6 +22,7 @@ export function TodoBody({ todo, setTodo }) {
 
         const newTodo = {
             id: crypto.randomUUID(),
+            status: false,
             name: inputValue
         }
 
@@ -43,7 +44,7 @@ export function TodoBody({ todo, setTodo }) {
                 <input value={inputValue} className="input-todo" type="text" placeholder="Add a new task..." onChange={handleInput} onKeyDown={pressEnterKey} />
                 <AddImage alt="add-image" className="add-image" onClick={handleAddButton} />
             </div>
-            <WeeklyProgress/>
+            <WeeklyProgress todo={todo}/>
             <FilterTodo />
             <TodoList todo={todo} setTodo={setTodo} />
 

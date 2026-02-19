@@ -1,7 +1,9 @@
 
 import "./WeeklyProgress.css"
 
-export function WeeklyProgress() {
+export function WeeklyProgress({ todo }) {
+
+
     return (
         <div className="weekly-progress-container">
 
@@ -17,7 +19,7 @@ export function WeeklyProgress() {
 
                             <span className="dash">/</span>
 
-                            <span className="total-tasks-denominator">7</span>
+                            <span className="total-tasks-denominator">{todo.length}</span>
                         </div>
 
                         <span className="tasks-title">tasks</span>

@@ -15,7 +15,7 @@
 
 .todo-value-container {
   margin-top: 20px;
-  padding: 6px 20px;
+  padding: 10px 20px;
 
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@
 
   border-radius: 10px;
   border: 1px solid rgba(17, 17, 17, 0.1);
-  box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 12px -6px rgba(0, 0, 0, 0.3);
 
   transition: border-color 0.3s ease;
 }
@@ -47,8 +47,16 @@
   max-width: 300px;
 }
 
-.radio-input {
-  margin-right: 17px;
+.circle-image{
+  stroke: rgb(187, 187, 187);
+  stroke-width: 1.5;
+  width: 27px;
+  margin-right: 10px;
+  transition: stroke 0.2s;
+}
+
+.circle-image:hover{
+  stroke: var(--primary-color);
 }
 
 .calendar-image {

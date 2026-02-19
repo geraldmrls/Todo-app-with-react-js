@@ -3,18 +3,24 @@ import { useState, useEffect, useRef } from "react"
 import calendarImage from "../../assets/calendar.svg"
 import EditImage from "../../assets/edit.svg?react"
 import DeleteImage from "../../assets/delete.svg?react"
+import Cirlce from "../../assets/circle.svg?react"
+import Check from "../../assets/check.svg?react"
 import "./TodoList.css"
 
 export function TodoList({ todo, setTodo }) {
     const [todoEdit, setTodoEdit] = useState(null);
+    const [check, setCheck] = useState(null);
     const todoContainerRef = useRef(null)
     useEffect(() => {
-        console.log("todo added");
         const containerElem = todoContainerRef.current;
         if(containerElem){
             containerElem.scrollTop = containerElem.scrollHeight;
         }
     }, [todo]);
+
+    useEffect(()=>{
+        console.log(todo)
+    }, [todo])
 
     if (!todo) return null;
 
@@ -41,7 +47,7 @@ export function TodoList({ todo, setTodo }) {
 
     function saveUpdatedTodo() {
 
-        console.log(todoEdit.name)
+        if(!todoEdit) return;
 
         const updatedTodos = todo.map(todoItem => {
             if (todoItem.id === todoEdit.id) {
@@ -63,6 +69,20 @@ export function TodoList({ todo, setTodo }) {
         }
     }
 
+    function checkTask(idToCheck){
+        const updatedTodos = todo.map(todoItem=>{
+            if(todoItem.id === idToCheck){
+                return {
+                    ...todoItem,
+                    status: !todoItem.status
+                }
+            }
+            return todoItem;
+        });
+        setTodo(updatedTodos)
+    }
+
+
 
 
     return (
@@ -72,7 +92,9 @@ export function TodoList({ todo, setTodo }) {
                     <div className="todo-value-container" key={todoElement.id}>
 
                         <div className="todo-added-container">
-                            <input className="radio-input" name="todo" type="radio" />
+                            <Cirlce className="circle-image" onClick={()=>{
+                                checkTask(todoElement.id)
+                            }}/>
 
                             <input type="text" className={todoEdit?.id === todoElement.id ? "show-edit-input" : "remove-edit-input"} value={todoEdit?.name || ""} onChange={updateTodo} onKeyDown={handleKeyDown} onBlur={saveUpdatedTodo} autoFocus />
 
