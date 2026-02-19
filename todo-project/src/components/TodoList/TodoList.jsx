@@ -13,12 +13,12 @@ export function TodoList({ todo, setTodo }) {
     const todoContainerRef = useRef(null)
     useEffect(() => {
         const containerElem = todoContainerRef.current;
-        if(containerElem){
+        if (containerElem) {
             containerElem.scrollTop = containerElem.scrollHeight;
         }
     }, [todo]);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(todo)
     }, [todo])
 
@@ -47,7 +47,7 @@ export function TodoList({ todo, setTodo }) {
 
     function saveUpdatedTodo() {
 
-        if(!todoEdit) return;
+        if (!todoEdit) return;
 
         const updatedTodos = todo.map(todoItem => {
             if (todoItem.id === todoEdit.id) {
@@ -69,9 +69,9 @@ export function TodoList({ todo, setTodo }) {
         }
     }
 
-    function checkTask(idToCheck){
-        const updatedTodos = todo.map(todoItem=>{
-            if(todoItem.id === idToCheck){
+    function checkTask(idToCheck) {
+        const updatedTodos = todo.map(todoItem => {
+            if (todoItem.id === idToCheck) {
                 return {
                     ...todoItem,
                     status: !todoItem.status
@@ -92,16 +92,21 @@ export function TodoList({ todo, setTodo }) {
                     <div className="todo-value-container" key={todoElement.id}>
 
                         <div className="todo-added-container">
-                            <Cirlce className="circle-image" onClick={()=>{
-                                checkTask(todoElement.id)
-                            }}/>
+
+                            <div className="circle-check-contianer" onClick={() => {
+                                    checkTask(todoElement.id)
+                                }}>
+                                <Check className={`check-image ${todoElement.status === true ? "check-reveal" : ""}`}/>
+
+                                <Cirlce className={`circle-image ${todoElement.status === true ? "circle-clicked" : ""}`}  />
+                            </div>
 
                             <input type="text" className={todoEdit?.id === todoElement.id ? "show-edit-input" : "remove-edit-input"} value={todoEdit?.name || ""} onChange={updateTodo} onKeyDown={handleKeyDown} onBlur={saveUpdatedTodo} autoFocus />
 
                             <div className={todoEdit?.id === todoElement.id ? "remove-todo-left-side" : "todo-left-side"}>
 
                                 <div className={todoEdit?.id === todoElement.id ? "remove-todo-name-container" : "todo-name-container"}>
-                                    <span className="todo">
+                                    <span className={`todo ${todoElement.status ? "todo-crossed" : ""}`}>
                                         {todoElement.name}
                                     </span>
                                     <div className={todoEdit?.id === todoElement.id ? "remove-todo-date-container" : "todo-date-container"}>
