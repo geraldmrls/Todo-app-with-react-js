@@ -5,12 +5,12 @@
 .todo-items-container {
   max-height: 350px; /* or whatever height you want */
   flex-grow: 1;
-  overflow-y: auto;  /* vertical scroll only */
+  overflow-y: auto; /* vertical scroll only */
   overflow-x: hidden; /* hide horizontal scroll */
+  scrollbar-width: none;
   padding-right: 0px; /* optional, prevents scrollbar overlap */
   margin-top: 25px;
   padding-bottom: 10px;
-  scrollbar-width: none;
 }
 
 .todo-value-container {
@@ -28,7 +28,7 @@
   transition: border-color 0.3s ease;
 }
 
-.todo-value-container:first-child{
+.todo-value-container:first-child {
   margin-top: 0;
 }
 
@@ -158,7 +158,6 @@
   transition: opacity 0.5s;
 }
 
-
 .edit-image:hover + .edit-image-cirlce {
   opacity: 1;
 }
@@ -166,9 +165,6 @@
 .delete-image:hover + .delete-image-circle {
   opacity: 1;
 }
-
-
-
 
 .delete-image-circle {
   right: -5px;
@@ -201,12 +197,10 @@
   border: none;
 }
 
-
-
 /* mobile response */
 
-@media (width<=767px) and (hover:none){
-  .todo-items-container{
+@media (width<=767px) and (hover: none) {
+  .todo-items-container {
     padding-right: 0px;
     padding-bottom: 15px;
   }

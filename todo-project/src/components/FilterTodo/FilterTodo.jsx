@@ -1,9 +1,17 @@
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import "./FilterTodo.css"
 
 export function FilterTodo(){
-    const [buttonActive, setButtonActive] = useState("ALL");
+    const [buttonActive, setButtonActive] = useState(()=>{
+        const buttonActiveSaved = localStorage.getItem("clicked-button");
+        return buttonActiveSaved ? JSON.parse(buttonActiveSaved) : "ALL";
+    });
+
+    useEffect(()=>{
+        localStorage.setItem("clicked-button", JSON.stringify(buttonActive));
+    }, [buttonActive])
+
 
     function handleClick(event){
         const buttonTextContent = event.target.textContent;
