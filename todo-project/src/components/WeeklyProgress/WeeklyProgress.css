@@ -1,0 +1,111 @@
+
+.weekly-progress-container{
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    border-bottom-width: 2px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+
+.weekly-progress-title{
+    color: #6d7d9d;
+}
+
+.progress-container{
+    margin-bottom: 5px;
+}
+
+.statistic-progress-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-bar{
+    width: 100%;
+    height: 7px;
+    border-radius: 3.5px;
+    background-color: var(--primary-color);
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.progress-in-fraction-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 110px;
+}
+
+.fraction-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-right: 4px;
+    font-weight: bold;
+}
+
+.completed-count-numerator{
+    font-size: 25px;
+}
+
+.dash{
+    font-size: 22px;
+    color: gray;
+}
+
+.total-tasks-denominator{
+    font-size: 25px;
+    font-weight: bold;
+    color: gray;
+}
+
+.tasks-title{
+    align-content: end;
+    font-size: 25px;
+    color: gray;
+}
+
+.progress-percentage-container{
+    font-size: 23px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* pending and completed tasks container */
+
+.pending-completed-container{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pending-container,
+.completed-container{
+    box-sizing: border-box;
+    width: 45%;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.pending-container{
+    background-color: #f4f7ff;
+    border: 1px solid #e0e9ff;
+}
+
+.completed-container{
+    background-color: #f2fbf9;
+    border: 1px solid #bbe4db;
+}
+
+
+

@@ -23,7 +23,14 @@ body{
   background-image: url(./assets/wave-bg.svg);
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: cover;
-
+  background-size: 100% auto;
 }
+
+@media(width<=767px){
+  body{
+    background-size: 400%;
+  }
+}
+
+
 

@@ -1,7 +1,27 @@
+
+/* variables color */
+:root{
+  --primary-color: #503cf7;
+  --border-gray-color: rgba(17, 17, 17, 0.1);
+}
+
 .todo-container {
-  height: 100vh;
-  margin-left: 30%;
-  margin-right: 30%;
+  min-height: 100vh;
+
+  width: 100%;
+  max-width: 600px; /* control max size */
+
+  margin: 0 auto; /* center horizontally */
+
   padding-top: 50px;
+  padding-bottom: 50px;
   box-sizing: border-box; /* ✅ important */
+}
+
+@media (width<=767px) {
+  .todo-container {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 0px;
+  }
 }

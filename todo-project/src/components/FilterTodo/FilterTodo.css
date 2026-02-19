@@ -8,7 +8,8 @@
 
 .filter-box {
   border: none;
-  border: 1px rgba(17, 17, 17, 0.1) solid;
+  border: 1px var(--border-gray-color) solid;
+  border-bottom-width: 2px;
   padding: 10px 0px 10px 5px;
   border-radius: 8px;
   width: 100%;
@@ -36,6 +37,10 @@
   height: 35px;
 }
 
+.sortout-buttons-container :first-child .clicked-button{
+  background-color: green;
+}
+
 button {
   background-color: none;
   background: none;
@@ -44,5 +49,39 @@ button {
   border: none;
   font-weight: bold;
   color: rgb(104, 103, 103);
-  cursor: pointer;
+  cursor: default;
+}
+
+button:hover {
+  color: rgb(34, 31, 31);
+}
+.clicked-button{
+  background-color: white;
+  color: #503cf7;
+  transition: 0.2s ease;
+}
+
+.clicked-button:hover{
+  color: #503cf7;
+}
+
+/* responsive for mobile */
+
+@media(width<=767px){
+  .filter-class{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sortout-buttons-container{
+    box-sizing: content-box;
+    margin: 0px;
+    width: 100%;
+  }
+
+  .filter-box{
+    margin-bottom: 8px;
+    box-sizing: border-box;
+  }
+  
 }

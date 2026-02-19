@@ -2,8 +2,19 @@
    TODO CONTAINER
 ========================= */
 
-.todo-value-container {
+.todo-items-container {
+  max-height: 350px; /* or whatever height you want */
+  flex-grow: 1;
+  overflow-y: auto;  /* vertical scroll only */
+  overflow-x: hidden; /* hide horizontal scroll */
+  padding-right: 0px; /* optional, prevents scrollbar overlap */
   margin-top: 25px;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+
+.todo-value-container {
+  margin-top: 20px;
   padding: 6px 20px;
 
   display: flex;
@@ -15,6 +26,10 @@
   box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.3);
 
   transition: border-color 0.3s ease;
+}
+
+.todo-value-container:first-child{
+  margin-top: 0;
 }
 
 .todo-value-container:hover {
@@ -184,4 +199,25 @@
 .show-edit-input:focus {
   outline: none;
   border: none;
+}
+
+
+
+/* mobile response */
+
+@media (width<=767px) and (hover:none){
+  .todo-items-container{
+    padding-right: 0px;
+    padding-bottom: 15px;
+  }
+
+  .todo-right-side .delete-image,
+  .todo-right-side .edit-image {
+    opacity: 1;
+  }
+
+  .edit-image:active + .edit-image-cirlce,
+  .delete-image:active + .delete-image-circle {
+    opacity: 1;
+  }
 }

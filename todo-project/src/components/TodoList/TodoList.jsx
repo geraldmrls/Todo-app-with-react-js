@@ -1,13 +1,20 @@
 
+import { useState, useEffect, useRef } from "react"
 import calendarImage from "../../assets/calendar.svg"
 import EditImage from "../../assets/edit.svg?react"
 import DeleteImage from "../../assets/delete.svg?react"
 import "./TodoList.css"
-import { useState } from "react"
 
 export function TodoList({ todo, setTodo }) {
-
     const [todoEdit, setTodoEdit] = useState(null);
+    const todoContainerRef = useRef(null)
+    useEffect(() => {
+        console.log("todo added");
+        const containerElem = todoContainerRef.current;
+        if(containerElem){
+            containerElem.scrollTop = containerElem.scrollHeight;
+        }
+    }, [todo]);
 
     if (!todo) return null;
 
@@ -22,7 +29,6 @@ export function TodoList({ todo, setTodo }) {
             return todoItem.id === idToEdit
         });
         setTodoEdit(selectedTodo);
-        console.log(selectedTodo.name);
     }
 
     function updateTodo(event) {
@@ -51,8 +57,8 @@ export function TodoList({ todo, setTodo }) {
         setTodoEdit(null)
     }
 
-    function handleKeyDown(event){
-        if(event.key === "Enter"){
+    function handleKeyDown(event) {
+        if (event.key === "Enter") {
             saveUpdatedTodo()
         }
     }
@@ -60,13 +66,13 @@ export function TodoList({ todo, setTodo }) {
 
 
     return (
-        <>
+        <div className="todo-items-container" ref={todoContainerRef}>
             {todo.map(todoElement => {
                 return (
                     <div className="todo-value-container" key={todoElement.id}>
 
                         <div className="todo-added-container">
-                            <input className="radio-input" type="radio" />
+                            <input className="radio-input" name="todo" type="radio" />
 
                             <input type="text" className={todoEdit?.id === todoElement.id ? "show-edit-input" : "remove-edit-input"} value={todoEdit?.name || ""} onChange={updateTodo} onKeyDown={handleKeyDown} onBlur={saveUpdatedTodo} autoFocus />
 
@@ -105,6 +111,6 @@ export function TodoList({ todo, setTodo }) {
                 )
             })}
 
-        </>
+        </div>
     )
 }
