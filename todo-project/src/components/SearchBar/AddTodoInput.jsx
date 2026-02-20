@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import dayjs from "dayjs";
 import { WeeklyProgress } from "../WeeklyProgress/WeeklyProgress.jsx";
 import { TodoList } from "../TodoList/TodoList.jsx";
 import { FilterTodo } from "../FilterTodo/FilterTodo.jsx"
@@ -27,7 +28,9 @@ export function TodoBody({ todo, setTodo, getTasksCompleted }) {
         const newTodo = {
             id: crypto.randomUUID(),
             status: false,
-            name: inputValue
+            name: inputValue,
+            createdAt: dayjs().toISOString(),
+            updated: false
         }
 
         setTodo([...todo, newTodo]);

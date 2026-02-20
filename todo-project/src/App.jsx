@@ -1,4 +1,5 @@
 
+import dayjs from 'dayjs';
 import { useState } from 'react'
 import { Header } from './components/Header/Header.jsx'
 import { TodoBody } from './components/SearchBar/AddTodoInput.jsx';
@@ -8,11 +9,19 @@ function App() {
 
   const [todo, setTodo] = useState(() => {
     const savedTodos = localStorage.getItem("todos");
-    return savedTodos ? JSON.parse(savedTodos) : [];
+    if (!savedTodos) return [];
+
+    const parsed = JSON.parse(savedTodos);
+
+    return parsed.map(t => ({
+      ...t,
+      createdAt: t.createdAt || dayjs().toISOString()
+    }));
   });
 
+
   function getTasksCompleted() {
-    return todo.filter((todoItem)=>todoItem.status === true);
+    return todo.filter((todoItem) => todoItem.status === true);
   }
 
   return (

@@ -1,21 +1,34 @@
 
 import { useState, useEffect, useRef } from "react"
+import relativeTime from "dayjs/plugin/relativeTime"
 import calendarImage from "../../assets/calendar.svg"
 import EditImage from "../../assets/edit.svg?react"
 import DeleteImage from "../../assets/delete.svg?react"
 import Cirlce from "../../assets/circle.svg?react"
 import Check from "../../assets/check.svg?react"
 import "./TodoList.css"
+import dayjs from "dayjs"
+
+dayjs.extend(relativeTime);
+
 
 export function TodoList({ todo, setTodo, getTasksCompleted, buttonActive }) {
     const [todoEdit, setTodoEdit] = useState(null);
     const todoContainerRef = useRef(null)
+    const [, setTick] = useState(0);
     useEffect(() => {
         const containerElem = todoContainerRef.current;
         if (containerElem) {
             containerElem.scrollTop = containerElem.scrollHeight;
         }
     }, [todo]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTick(prev => prev + 1);
+        }, 1000)
+        return () => clearInterval(interval)
+    }, [])
 
 
     if (!todo) return null;
@@ -37,7 +50,8 @@ export function TodoList({ todo, setTodo, getTasksCompleted, buttonActive }) {
         const newValue = event.target.value;
         setTodoEdit({
             ...todoEdit,
-            name: newValue
+            name: newValue,
+            updated: true
         })
     }
 
@@ -49,7 +63,8 @@ export function TodoList({ todo, setTodo, getTasksCompleted, buttonActive }) {
             if (todoItem.id === todoEdit.id) {
                 return {
                     ...todoItem,
-                    name: todoEdit.name
+                    name: todoEdit.name,
+                    updated: true
                 }
             }
             return todoItem;
@@ -79,12 +94,12 @@ export function TodoList({ todo, setTodo, getTasksCompleted, buttonActive }) {
     }
 
 
-    const tasksToShow = todo.filter(todoItem=>{
-        if(buttonActive==="ALL"){
+    const tasksToShow = todo.filter(todoItem => {
+        if (buttonActive === "ALL") {
             return todoItem;
-        }else if (buttonActive === "ACTIVE"){
+        } else if (buttonActive === "ACTIVE") {
             return todoItem.status === false;
-        }else if(buttonActive === "COMPLETED"){
+        } else if (buttonActive === "COMPLETED") {
             return todoItem.status === true;
         }
     })
@@ -93,6 +108,7 @@ export function TodoList({ todo, setTodo, getTasksCompleted, buttonActive }) {
     return (
         <div className="todo-items-container" ref={todoContainerRef}>
             {tasksToShow.map(todoElement => {
+
                 return (
                     <div className="todo-value-container" key={todoElement.id}>
 
@@ -118,8 +134,11 @@ export function TodoList({ todo, setTodo, getTasksCompleted, buttonActive }) {
                                     <div className={todoEdit?.id === todoElement.id ? "remove-todo-date-container" : "todo-date-container"}>
                                         <img className="calendar-image" src={calendarImage} />
                                         <span className="todo-date-added">
-                                            2/16/2026
+                                            {todoElement.createdAt
+                                                ? dayjs(todoElement.createdAt).fromNow()
+                                                : "No date"}
                                         </span>
+                                        <span className={todoElement.updated ? "todo-is-updated" : ""}>{`${todoElement.updated ? "· Updated" : ""}`}</span>
                                     </div>
                                 </div>
                             </div>
