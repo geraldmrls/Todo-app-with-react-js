@@ -1,9 +1,14 @@
 
 import {useEffect } from "react"
+import SearchIcon from "../../assets/search.svg?react"
 import "./FilterTodo.css"
 
-export function FilterTodo({ buttonActive, setButtonActive }){
+export function FilterTodo({ buttonActive, setButtonActive, setFilterInput }){
 
+    function handleChange(event){
+        const filterInputValue = event.target.value;
+        setFilterInput(filterInputValue);
+    }
 
     useEffect(()=>{
         localStorage.setItem("clicked-button", JSON.stringify(buttonActive));
@@ -17,9 +22,13 @@ export function FilterTodo({ buttonActive, setButtonActive }){
 
     return(
         <>
-            <div className="filter-class">
+            <div className="filter-container">
                 
-                <input className="filter-box" type="text" placeholder="Filter Tasks"/>
+                <div className="filter-box-container">
+                    <input className="filter-box" type="text" placeholder="Filter Tasks" onChange={handleChange}/>
+                    <SearchIcon className={"search-icon"}/>
+
+                </div>
 
                 <div className="sortout-buttons-container">
 

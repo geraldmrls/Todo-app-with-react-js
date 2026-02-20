@@ -43,8 +43,8 @@
 
 @media(width<=767px){
   .input-todo{
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 18px;
+    padding-bottom: 18px;
   }
 
   .add-image{

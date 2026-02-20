@@ -13,6 +13,7 @@ export function TodoBody({ todo, setTodo, getTasksCompleted }) {
         const buttonActiveSaved = localStorage.getItem("clicked-button");
         return buttonActiveSaved ? JSON.parse(buttonActiveSaved) : "ALL";
     });
+    const [filterInput, setFilterInput] = useState("");
     useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(todo))
     }, [todo]);
@@ -30,10 +31,11 @@ export function TodoBody({ todo, setTodo, getTasksCompleted }) {
             status: false,
             name: inputValue,
             createdAt: dayjs().toISOString(),
-            updated: false
+            updated: false,
+            isNew: true
         }
 
-        setTodo([...todo, newTodo]);
+        setTodo([newTodo, ...todo]);
 
 
         setInputValue("");
@@ -52,8 +54,8 @@ export function TodoBody({ todo, setTodo, getTasksCompleted }) {
                 <AddImage alt="add-image" className="add-image" onClick={handleAddButton} />
             </div>
             <WeeklyProgress todo={todo} getTasksCompleted={getTasksCompleted} />
-            <FilterTodo buttonActive={buttonActive} setButtonActive={setButtonActive} />
-            <TodoList todo={todo} setTodo={setTodo} getTasksCompleted={getTasksCompleted} buttonActive={buttonActive} />
+            <FilterTodo buttonActive={buttonActive} setButtonActive={setButtonActive} setFilterInput={setFilterInput}/>
+            <TodoList todo={todo} setTodo={setTodo} getTasksCompleted={getTasksCompleted} buttonActive={buttonActive} filterInput={filterInput}/>
 
         </>
     )

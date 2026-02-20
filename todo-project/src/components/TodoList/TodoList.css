@@ -25,7 +25,26 @@
   border: 1px solid rgba(17, 17, 17, 0.1);
   box-shadow: 0 5px 12px -6px rgba(0, 0, 0, 0.3);
 
-  transition: border-color 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+  transition: border-color 0.3s ease, opacity 0.4s ease, transform 0.4s ease;
+
+}
+
+.todo-value-container.removing {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.todo-value-container.editing {
+  background-color: rgba(80, 60, 247, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.new-todo{
+  opacity: 0;
+  transform: translateY(-20px);
 }
 
 .todo-value-container:first-child {
