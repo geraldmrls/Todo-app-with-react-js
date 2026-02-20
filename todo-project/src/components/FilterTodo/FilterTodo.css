@@ -37,10 +37,6 @@
   height: 35px;
 }
 
-.sortout-buttons-container :first-child .clicked-button{
-  background-color: green;
-}
-
 button {
   background-color: none;
   background: none;
@@ -82,6 +78,8 @@ button:hover {
   .filter-box{
     margin-bottom: 8px;
     box-sizing: border-box;
+    max-width: none;
+    height: 45+px;
   }
   
 }

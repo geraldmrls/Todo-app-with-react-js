@@ -7,6 +7,7 @@ header {
 
 .todo-logo {
   height: 45px;
+  margin-right: 10px;
 }
 
 .todays-task {
@@ -24,6 +25,9 @@ header {
 /* responsive */
 
 @media(width<=767px){
+  header{
+    padding-right: 15px;
+  }
   .todays-task{
     font-size: 40px;
   }

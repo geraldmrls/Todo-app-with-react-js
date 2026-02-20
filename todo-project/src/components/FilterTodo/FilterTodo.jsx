@@ -1,12 +1,9 @@
 
-import { useState, useEffect } from "react"
+import {useEffect } from "react"
 import "./FilterTodo.css"
 
-export function FilterTodo(){
-    const [buttonActive, setButtonActive] = useState(()=>{
-        const buttonActiveSaved = localStorage.getItem("clicked-button");
-        return buttonActiveSaved ? JSON.parse(buttonActiveSaved) : "ALL";
-    });
+export function FilterTodo({ buttonActive, setButtonActive }){
+
 
     useEffect(()=>{
         localStorage.setItem("clicked-button", JSON.stringify(buttonActive));
@@ -21,6 +18,7 @@ export function FilterTodo(){
     return(
         <>
             <div className="filter-class">
+                
                 <input className="filter-box" type="text" placeholder="Filter Tasks"/>
 
                 <div className="sortout-buttons-container">

@@ -20,8 +20,8 @@
 
 @media (width<=767px) {
   .todo-container {
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 100%;
+    max-width: 340px;
     margin-bottom: 0px;
   }
 }

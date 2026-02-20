@@ -7,9 +7,8 @@ import Cirlce from "../../assets/circle.svg?react"
 import Check from "../../assets/check.svg?react"
 import "./TodoList.css"
 
-export function TodoList({ todo, setTodo }) {
+export function TodoList({ todo, setTodo, getTasksCompleted, buttonActive }) {
     const [todoEdit, setTodoEdit] = useState(null);
-    const [check, setCheck] = useState(null);
     const todoContainerRef = useRef(null)
     useEffect(() => {
         const containerElem = todoContainerRef.current;
@@ -18,9 +17,6 @@ export function TodoList({ todo, setTodo }) {
         }
     }, [todo]);
 
-    useEffect(() => {
-        console.log(todo)
-    }, [todo])
 
     if (!todo) return null;
 
@@ -83,22 +79,32 @@ export function TodoList({ todo, setTodo }) {
     }
 
 
+    const tasksToShow = todo.filter(todoItem=>{
+        if(buttonActive==="ALL"){
+            return todoItem;
+        }else if (buttonActive === "ACTIVE"){
+            return todoItem.status === false;
+        }else if(buttonActive === "COMPLETED"){
+            return todoItem.status === true;
+        }
+    })
 
 
     return (
         <div className="todo-items-container" ref={todoContainerRef}>
-            {todo.map(todoElement => {
+            {tasksToShow.map(todoElement => {
                 return (
                     <div className="todo-value-container" key={todoElement.id}>
 
                         <div className="todo-added-container">
 
                             <div className="circle-check-contianer" onClick={() => {
-                                    checkTask(todoElement.id)
-                                }}>
-                                <Check className={`check-image ${todoElement.status === true ? "check-reveal" : ""}`}/>
+                                checkTask(todoElement.id);
+                                getTasksCompleted()
+                            }}>
+                                <Check className={`check-image ${todoElement.status === true ? "check-reveal" : ""}`} />
 
-                                <Cirlce className={`circle-image ${todoElement.status === true ? "circle-clicked" : ""}`}  />
+                                <Cirlce className={`circle-image ${todoElement.status === true ? "circle-clicked" : ""}`} />
                             </div>
 
                             <input type="text" className={todoEdit?.id === todoElement.id ? "show-edit-input" : "remove-edit-input"} value={todoEdit?.name || ""} onChange={updateTodo} onKeyDown={handleKeyDown} onBlur={saveUpdatedTodo} autoFocus />
